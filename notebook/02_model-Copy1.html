@@ -1,0 +1,1575 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Alzheimer’s EEG: Modeling &#8212; Alzheimer&#39;s EEG &amp; Ethics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebook/02_model-Copy1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../01_introduction.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Alzheimer's EEG & Ethics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../01_introduction.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../02_data_collection.html">Data Collection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_data_analysis.html">Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04_model_use.html">Model Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_justice.html">Justice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_revision.html">Revision</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../07_technical.html">Technical Details</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_features.html">EEG Features</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="02_model.html">Linear Modeling</a></li>
+
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryanhammonds/alzheimers_eeg" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryanhammonds/alzheimers_eeg/issues/new?title=Issue%20on%20page%20%2Fnotebook/02_model-Copy1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebook/02_model-Copy1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Alzheimer’s EEG: Modeling</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Alzheimer’s EEG: Modeling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#riskslim">RiskSLIM</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">riskslim</span> <span class="kn">import</span> <span class="n">RiskSLIMClassifier</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="alzheimer-s-eeg-modeling">
+<h1>Alzheimer’s EEG: Modeling<a class="headerlink" href="#alzheimer-s-eeg-modeling" title="Permalink to this heading">#</a></h1>
+<p>The features from the previous notebook are now passed into a sparse risk model. The variables found to be important in classification were timescales (label as spectral “knee_freq” below) and 1/f slope. The model produced an AUC=0.8.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load features</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;alzheimers_features.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load correlation features</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;corr_params.npy&quot;</span><span class="p">)</span>
+<span class="n">corr_var_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;corr_params_names.npy&quot;</span><span class="p">)</span>
+<span class="n">df_corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">corr_var_names</span><span class="p">)</span>
+
+<span class="c1"># Merge dfs</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_corr</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># X and y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># alzheimer&#39;s</span>
+<span class="n">y</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># controls</span>
+
+<span class="c1"># Scaler</span>
+<span class="c1"># from sklearn.preprocessing import StandardScaler</span>
+<span class="c1"># scaler = StandardScaler()</span>
+<span class="c1"># X = scaler.fit_transform(X)</span>
+
+<span class="c1"># # Impute missing values</span>
+<span class="c1"># imp = SimpleImputer(missing_values=np.nan, strategy=&#39;mean&#39;)</span>
+<span class="c1"># X = imp.fit_transform(X)</span>
+
+
+<span class="c1"># Add intercept</span>
+<span class="n">variable_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+
+<span class="c1"># # Drop offset, constant, and exponent parameters</span>
+<span class="c1"># #   for faster computation</span>
+<span class="c1"># keep = []</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variable_names</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;offset&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;const&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">):</span><span class="c1"># and (&quot;exp&quot; not in v):</span>
+        <span class="n">keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># X = X[:, keep]</span>
+<span class="c1"># variable_names = np.array(variable_names)[keep].tolist()</span>
+<span class="c1"># variable_names.insert(0, &quot;(Intercept)&quot;)</span>
+
+
+<span class="c1"># np.random.seed(2)</span>
+<span class="c1"># inds = np.random.choice(np.arange(88), size=60, replace=False)</span>
+<span class="c1">#X = X[inds]</span>
+<span class="c1">#y = y[inds]</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
+
+<span class="n">X_clean</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">y_clean</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">inds_clean</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+    
+    <span class="n">inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="n">label</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">X0</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">label</span><span class="p">]</span>
+    <span class="n">y0</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="n">label</span><span class="p">]</span>
+    
+    
+    <span class="n">imp</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X0</span> <span class="o">=</span> <span class="n">imp</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X0</span><span class="p">)</span>
+
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_init</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X0</span><span class="p">)</span>
+
+    
+    <span class="n">isofor</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">isofor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X0</span><span class="p">)</span>
+
+    <span class="n">inliers</span> <span class="o">=</span> <span class="n">isofor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="c1">#X_clean.append(X0[inliers])</span>
+    <span class="c1">#y_clean.append(y0[inliers])</span>
+    <span class="n">inds_clean</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">inds</span><span class="p">[</span><span class="n">inliers</span><span class="p">])</span>
+    
+<span class="c1"># X = np.concatenate(X_clean)</span>
+<span class="c1"># y = np.concatenate(y_clean)</span>
+<span class="c1"># X = X[np.concatenate(inds_clean)]</span>
+<span class="c1"># y = y[np.concatenate(inds_clean)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="n">kfolds</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">_auc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">_tpr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">_fpr</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">inds_train</span><span class="p">,</span> <span class="n">inds_test</span> <span class="ow">in</span> <span class="n">kfolds</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    
+    <span class="c1"># Split</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inds_train</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">inds_train</span><span class="p">]</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inds_test</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">inds_test</span><span class="p">]</span>
+
+    <span class="c1"># Impute</span>
+    <span class="n">imp_train</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">imp_train</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">imp_test</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">imp_test</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Scale</span>
+    <span class="n">scaler_train</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler_train</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">scaler_test</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler_test</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Outlier removal</span>
+<span class="c1">#     isofor = IsolationForest(n_estimators=500)</span>
+<span class="c1">#     isofor.fit(X_train)</span>
+    
+<span class="c1">#     inliers = isofor.predict(X_train) == 1</span>
+    
+<span class="c1">#     X_train = X_train[inliers]</span>
+<span class="c1">#     y_train = y_train[inliers]</span>
+    
+    
+<span class="c1">#     isofor = IsolationForest(n_estimators=500)</span>
+<span class="c1">#     isofor.fit(X_test)</span>
+    
+<span class="c1">#     inliers = isofor.predict(X_test) == 1</span>
+    
+<span class="c1">#     X_test = X_test[inliers]</span>
+<span class="c1">#     y_test = y_test[inliers]</span>
+    
+    <span class="c1"># Model   </span>
+    <span class="c1">#lr = SGDClassifier(loss=&quot;log_loss&quot;, penalty=&quot;elasticnet&quot;)</span>
+    
+    <span class="n">lr</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">&quot;l1&quot;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;liblinear&quot;</span><span class="p">)</span>    
+    <span class="c1">#lr = LogisticRegression()</span>
+    <span class="c1">#lr = SVC(probability=True)</span>
+    
+    <span class="c1"># Grid search</span>
+    <span class="c1"># params = {&#39;alpha&#39;: np.linspace(1e-2, 1e1, 1000), &quot;l1_ratio&quot;: np.linspace(.01, .99, 1000)}</span>
+    <span class="c1"># lr = RandomizedSearchCV(lr, params, n_iter=200, random_state=0)</span>
+    
+    <span class="c1"># Train</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        
+    <span class="c1"># Test</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    
+    <span class="n">_auc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">))</span>
+    <span class="n">_tpr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tpr</span><span class="p">)</span>
+    <span class="n">_fpr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fpr</span><span class="p">)</span>
+     
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">_auc</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">_fpr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">_auc</span><span class="p">)],</span> <span class="n">_tpr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">_auc</span><span class="p">)],</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.52
+0.39
+0.44
+0.34
+0.33
+
+0.41
+</pre></div>
+</div>
+<img alt="../_images/75129290e2560673c808609829d0c5ac67b8438e81e0969cdebfa111c3f30a18.png" src="../_images/75129290e2560673c808609829d0c5ac67b8438e81e0969cdebfa111c3f30a18.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span><span class="p">,</span> <span class="n">SGDClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span><span class="p">,</span> <span class="n">auc</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">RandomizedSearchCV</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="n">kfolds</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">_auc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">_tpr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">_fpr</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">inds_train</span><span class="p">,</span> <span class="n">inds_test</span> <span class="ow">in</span> <span class="n">kfolds</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    
+    <span class="c1"># Split</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inds_train</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">inds_train</span><span class="p">]</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inds_test</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">inds_test</span><span class="p">]</span>
+
+    <span class="c1"># Impute</span>
+    <span class="n">imp_train</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">imp_train</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">imp_test</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">imp_test</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Scale</span>
+    <span class="n">scaler_train</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler_train</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">scaler_test</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler_test</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Outlier removal</span>
+    <span class="n">contam</span> <span class="o">=</span> <span class="mf">.2</span>
+    <span class="n">isofor</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=</span><span class="n">contam</span><span class="p">)</span>
+    <span class="n">isofor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">inliers</span> <span class="o">=</span> <span class="n">isofor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">inliers</span><span class="p">]</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">inliers</span><span class="p">]</span>
+    
+    
+    <span class="n">isofor</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">contamination</span><span class="o">=</span><span class="n">contam</span><span class="p">)</span>
+    <span class="n">isofor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="n">inliers</span> <span class="o">=</span> <span class="n">isofor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[</span><span class="n">inliers</span><span class="p">]</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="p">[</span><span class="n">inliers</span><span class="p">]</span>
+    
+    <span class="c1"># Model   </span>
+    <span class="c1">#lr = SGDClassifier(loss=&quot;log_loss&quot;, penalty=&quot;elasticnet&quot;)</span>
+    
+    <span class="c1">#lr = LogisticRegression(penalty=&quot;l1&quot;, solver=&quot;liblinear&quot;)    </span>
+    
+    <span class="n">lr</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Grid search</span>
+    <span class="c1">#params = {&#39;alpha&#39;: np.linspace(1e-2, 1e1, 1000), &quot;l1_ratio&quot;: np.linspace(.01, .99, 1000)}</span>
+    <span class="c1">#lr = RandomizedSearchCV(lr, params, n_iter=200, random_state=0)</span>
+    
+    <span class="c1"># Train</span>
+    <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        
+    <span class="c1"># Test</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    
+    <span class="n">_auc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">))</span>
+    <span class="n">_tpr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tpr</span><span class="p">)</span>
+    <span class="n">_fpr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fpr</span><span class="p">)</span>
+     
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">_auc</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">_fpr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">_auc</span><span class="p">)],</span> <span class="n">_tpr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">_auc</span><span class="p">)],</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.58
+0.44
+0.88
+0.98
+0.67
+
+0.71
+</pre></div>
+</div>
+<img alt="../_images/8f5f9553ed654af7315f0f40523fa1ec5e3c4425522ec526943ffd26264e6606.png" src="../_images/8f5f9553ed654af7315f0f40523fa1ec5e3c4425522ec526943ffd26264e6606.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load features</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;alzheimers_features.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load correlation features</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;corr_params.npy&quot;</span><span class="p">)</span>
+<span class="n">corr_var_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;corr_params_names.npy&quot;</span><span class="p">)</span>
+<span class="n">df_corr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">corr_var_names</span><span class="p">)</span>
+
+<span class="c1"># Merge dfs</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">df_corr</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># X and y</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># alzheimer&#39;s</span>
+<span class="n">y</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># controls</span>
+
+<span class="c1"># Scaler</span>
+<span class="c1"># from sklearn.preprocessing import StandardScaler</span>
+<span class="c1"># scaler = StandardScaler()</span>
+<span class="c1"># X = scaler.fit_transform(X)</span>
+
+<span class="c1"># # Impute missing values</span>
+<span class="c1"># imp = SimpleImputer(missing_values=np.nan, strategy=&#39;mean&#39;)</span>
+<span class="c1"># X = imp.fit_transform(X)</span>
+
+
+<span class="c1"># Add intercept</span>
+<span class="n">variable_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+
+
+<span class="c1"># Drop offset, constant, and exponent parameters</span>
+<span class="c1">#   for faster computation</span>
+<span class="n">keep</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variable_names</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;offset&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;const&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;exp&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">keep</span><span class="p">]</span>
+<span class="n">variable_names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)[</span><span class="n">keep</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">variable_names</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;(Intercept)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RiskSLIM settings</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;max_runtime&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span>
+    <span class="s2">&quot;max_tolerance&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span>
+    <span class="s2">&quot;loss_computation&quot;</span><span class="p">:</span> <span class="s2">&quot;fast&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;round_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;polish_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;chained_updates_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;add_cuts_at_heuristic_solutions&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;initialization_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;init_max_runtime&quot;</span><span class="p">:</span> <span class="mf">60.0</span><span class="p">,</span>
+    <span class="s2">&quot;init_max_coefficient_gap&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="s2">&quot;cplex_randomseed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;cplex_mipemphasis&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+
+
+<span class="n">kfolds</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">_auc</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">_tpr</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">_fpr</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">inds_train</span><span class="p">,</span> <span class="n">inds_test</span> <span class="ow">in</span> <span class="n">kfolds</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    
+    <span class="c1"># Split</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inds_train</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">inds_train</span><span class="p">]</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">inds_test</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">inds_test</span><span class="p">]</span>
+
+    <span class="c1"># Impute</span>
+    <span class="n">imp_train</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">imp_train</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">imp_test</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">imp_test</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+    <span class="c1"># Scaler</span>
+    <span class="n">scaler_train</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler_train</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+    
+    <span class="n">scaler_test</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler_test</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    
+
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Model   </span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="n">RiskSLIMClassifier</span><span class="p">(</span>
+        <span class="n">max_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+        <span class="n">max_coef</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">max_abs_offset</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">variable_names</span><span class="o">=</span><span class="n">variable_names</span><span class="p">,</span>
+        <span class="n">outcome_name</span><span class="o">=</span><span class="s2">&quot;alzheimers&quot;</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">settings</span><span class="o">=</span><span class="n">settings</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Train</span>
+    <span class="n">rs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        
+    <span class="c1"># Test</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rs</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">pos_label</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">tpr</span><span class="p">,</span> <span class="n">fpr</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)[</span><span class="n">rs</span><span class="o">.</span><span class="n">rho</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tpr</span><span class="p">,</span> <span class="n">fpr</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="n">_auc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">auc</span><span class="p">(</span><span class="n">tpr</span><span class="p">,</span> <span class="n">fpr</span><span class="p">))</span>
+    <span class="n">_tpr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tpr</span><span class="p">)</span>
+    <span class="n">_fpr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fpr</span><span class="p">)</span>
+     
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">_auc</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">_tpr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">_auc</span><span class="p">)],</span> <span class="n">_fpr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">_auc</span><span class="p">)],</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variable_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;(Intercept)&#39;,
+ &#39;linear_slope_Fp1&#39;,
+ &#39;alpha_knee_freq_Fp1&#39;,
+ &#39;alpha_exp_Fp1&#39;,
+ &#39;gamma_knee_freq_Fp1&#39;,
+ &#39;gamma_exp_Fp1&#39;,
+ &#39;linear_slope_Fp2&#39;,
+ &#39;alpha_knee_freq_Fp2&#39;,
+ &#39;alpha_exp_Fp2&#39;,
+ &#39;gamma_knee_freq_Fp2&#39;,
+ &#39;gamma_exp_Fp2&#39;,
+ &#39;linear_slope_F3&#39;,
+ &#39;alpha_knee_freq_F3&#39;,
+ &#39;alpha_exp_F3&#39;,
+ &#39;gamma_knee_freq_F3&#39;,
+ &#39;gamma_exp_F3&#39;,
+ &#39;linear_slope_F4&#39;,
+ &#39;alpha_knee_freq_F4&#39;,
+ &#39;alpha_exp_F4&#39;,
+ &#39;gamma_knee_freq_F4&#39;,
+ &#39;gamma_exp_F4&#39;,
+ &#39;linear_slope_C3&#39;,
+ &#39;alpha_knee_freq_C3&#39;,
+ &#39;alpha_exp_C3&#39;,
+ &#39;gamma_knee_freq_C3&#39;,
+ &#39;gamma_exp_C3&#39;,
+ &#39;linear_slope_C4&#39;,
+ &#39;alpha_knee_freq_C4&#39;,
+ &#39;alpha_exp_C4&#39;,
+ &#39;gamma_knee_freq_C4&#39;,
+ &#39;gamma_exp_C4&#39;,
+ &#39;linear_slope_P3&#39;,
+ &#39;alpha_knee_freq_P3&#39;,
+ &#39;alpha_exp_P3&#39;,
+ &#39;gamma_knee_freq_P3&#39;,
+ &#39;gamma_exp_P3&#39;,
+ &#39;linear_slope_P4&#39;,
+ &#39;alpha_knee_freq_P4&#39;,
+ &#39;alpha_exp_P4&#39;,
+ &#39;gamma_knee_freq_P4&#39;,
+ &#39;gamma_exp_P4&#39;,
+ &#39;linear_slope_O1&#39;,
+ &#39;alpha_knee_freq_O1&#39;,
+ &#39;alpha_exp_O1&#39;,
+ &#39;gamma_knee_freq_O1&#39;,
+ &#39;gamma_exp_O1&#39;,
+ &#39;linear_slope_O2&#39;,
+ &#39;alpha_knee_freq_O2&#39;,
+ &#39;alpha_exp_O2&#39;,
+ &#39;gamma_knee_freq_O2&#39;,
+ &#39;gamma_exp_O2&#39;,
+ &#39;linear_slope_F7&#39;,
+ &#39;alpha_knee_freq_F7&#39;,
+ &#39;alpha_exp_F7&#39;,
+ &#39;gamma_knee_freq_F7&#39;,
+ &#39;gamma_exp_F7&#39;,
+ &#39;linear_slope_F8&#39;,
+ &#39;alpha_knee_freq_F8&#39;,
+ &#39;alpha_exp_F8&#39;,
+ &#39;gamma_knee_freq_F8&#39;,
+ &#39;gamma_exp_F8&#39;,
+ &#39;linear_slope_T3&#39;,
+ &#39;alpha_knee_freq_T3&#39;,
+ &#39;alpha_exp_T3&#39;,
+ &#39;gamma_knee_freq_T3&#39;,
+ &#39;gamma_exp_T3&#39;,
+ &#39;linear_slope_T4&#39;,
+ &#39;alpha_knee_freq_T4&#39;,
+ &#39;alpha_exp_T4&#39;,
+ &#39;gamma_knee_freq_T4&#39;,
+ &#39;gamma_exp_T4&#39;,
+ &#39;linear_slope_T5&#39;,
+ &#39;alpha_knee_freq_T5&#39;,
+ &#39;alpha_exp_T5&#39;,
+ &#39;gamma_knee_freq_T5&#39;,
+ &#39;gamma_exp_T5&#39;,
+ &#39;linear_slope_T6&#39;,
+ &#39;alpha_knee_freq_T6&#39;,
+ &#39;alpha_exp_T6&#39;,
+ &#39;gamma_knee_freq_T6&#39;,
+ &#39;gamma_exp_T6&#39;,
+ &#39;linear_slope_Fz&#39;,
+ &#39;alpha_knee_freq_Fz&#39;,
+ &#39;alpha_exp_Fz&#39;,
+ &#39;gamma_knee_freq_Fz&#39;,
+ &#39;gamma_exp_Fz&#39;,
+ &#39;linear_slope_Cz&#39;,
+ &#39;alpha_knee_freq_Cz&#39;,
+ &#39;alpha_exp_Cz&#39;,
+ &#39;gamma_knee_freq_Cz&#39;,
+ &#39;gamma_exp_Cz&#39;,
+ &#39;linear_slope_Pz&#39;,
+ &#39;alpha_knee_freq_Pz&#39;,
+ &#39;alpha_exp_Pz&#39;,
+ &#39;gamma_knee_freq_Pz&#39;,
+ &#39;gamma_exp_Pz&#39;,
+ &#39;corr_Fp2_and_Fp1_knee_freq&#39;,
+ &#39;corr_Fp2_and_Fp1_exp&#39;,
+ &#39;corr_F3_and_Fp1_knee_freq&#39;,
+ &#39;corr_F3_and_Fp1_exp&#39;,
+ &#39;corr_F3_and_Fp2_knee_freq&#39;,
+ &#39;corr_F3_and_Fp2_exp&#39;,
+ &#39;corr_F4_and_Fp1_knee_freq&#39;,
+ &#39;corr_F4_and_Fp1_exp&#39;,
+ &#39;corr_F4_and_Fp2_knee_freq&#39;,
+ &#39;corr_F4_and_Fp2_exp&#39;,
+ &#39;corr_F4_and_F3_knee_freq&#39;,
+ &#39;corr_F4_and_F3_exp&#39;,
+ &#39;corr_C3_and_Fp1_knee_freq&#39;,
+ &#39;corr_C3_and_Fp1_exp&#39;,
+ &#39;corr_C3_and_Fp2_knee_freq&#39;,
+ &#39;corr_C3_and_Fp2_exp&#39;,
+ &#39;corr_C3_and_F3_knee_freq&#39;,
+ &#39;corr_C3_and_F3_exp&#39;,
+ &#39;corr_C3_and_F4_knee_freq&#39;,
+ &#39;corr_C3_and_F4_exp&#39;,
+ &#39;corr_C4_and_Fp1_knee_freq&#39;,
+ &#39;corr_C4_and_Fp1_exp&#39;,
+ &#39;corr_C4_and_Fp2_knee_freq&#39;,
+ &#39;corr_C4_and_Fp2_exp&#39;,
+ &#39;corr_C4_and_F3_knee_freq&#39;,
+ &#39;corr_C4_and_F3_exp&#39;,
+ &#39;corr_C4_and_F4_knee_freq&#39;,
+ &#39;corr_C4_and_F4_exp&#39;,
+ &#39;corr_C4_and_C3_knee_freq&#39;,
+ &#39;corr_C4_and_C3_exp&#39;,
+ &#39;corr_P3_and_Fp1_knee_freq&#39;,
+ &#39;corr_P3_and_Fp1_exp&#39;,
+ &#39;corr_P3_and_Fp2_knee_freq&#39;,
+ &#39;corr_P3_and_Fp2_exp&#39;,
+ &#39;corr_P3_and_F3_knee_freq&#39;,
+ &#39;corr_P3_and_F3_exp&#39;,
+ &#39;corr_P3_and_F4_knee_freq&#39;,
+ &#39;corr_P3_and_F4_exp&#39;,
+ &#39;corr_P3_and_C3_knee_freq&#39;,
+ &#39;corr_P3_and_C3_exp&#39;,
+ &#39;corr_P3_and_C4_knee_freq&#39;,
+ &#39;corr_P3_and_C4_exp&#39;,
+ &#39;corr_P4_and_Fp1_knee_freq&#39;,
+ &#39;corr_P4_and_Fp1_exp&#39;,
+ &#39;corr_P4_and_Fp2_knee_freq&#39;,
+ &#39;corr_P4_and_Fp2_exp&#39;,
+ &#39;corr_P4_and_F3_knee_freq&#39;,
+ &#39;corr_P4_and_F3_exp&#39;,
+ &#39;corr_P4_and_F4_knee_freq&#39;,
+ &#39;corr_P4_and_F4_exp&#39;,
+ &#39;corr_P4_and_C3_knee_freq&#39;,
+ &#39;corr_P4_and_C3_exp&#39;,
+ &#39;corr_P4_and_C4_knee_freq&#39;,
+ &#39;corr_P4_and_C4_exp&#39;,
+ &#39;corr_P4_and_P3_knee_freq&#39;,
+ &#39;corr_P4_and_P3_exp&#39;,
+ &#39;corr_O1_and_Fp1_knee_freq&#39;,
+ &#39;corr_O1_and_Fp1_exp&#39;,
+ &#39;corr_O1_and_Fp2_knee_freq&#39;,
+ &#39;corr_O1_and_Fp2_exp&#39;,
+ &#39;corr_O1_and_F3_knee_freq&#39;,
+ &#39;corr_O1_and_F3_exp&#39;,
+ &#39;corr_O1_and_F4_knee_freq&#39;,
+ &#39;corr_O1_and_F4_exp&#39;,
+ &#39;corr_O1_and_C3_knee_freq&#39;,
+ &#39;corr_O1_and_C3_exp&#39;,
+ &#39;corr_O1_and_C4_knee_freq&#39;,
+ &#39;corr_O1_and_C4_exp&#39;,
+ &#39;corr_O1_and_P3_knee_freq&#39;,
+ &#39;corr_O1_and_P3_exp&#39;,
+ &#39;corr_O1_and_P4_knee_freq&#39;,
+ &#39;corr_O1_and_P4_exp&#39;,
+ &#39;corr_O2_and_Fp1_knee_freq&#39;,
+ &#39;corr_O2_and_Fp1_exp&#39;,
+ &#39;corr_O2_and_Fp2_knee_freq&#39;,
+ &#39;corr_O2_and_Fp2_exp&#39;,
+ &#39;corr_O2_and_F3_knee_freq&#39;,
+ &#39;corr_O2_and_F3_exp&#39;,
+ &#39;corr_O2_and_F4_knee_freq&#39;,
+ &#39;corr_O2_and_F4_exp&#39;,
+ &#39;corr_O2_and_C3_knee_freq&#39;,
+ &#39;corr_O2_and_C3_exp&#39;,
+ &#39;corr_O2_and_C4_knee_freq&#39;,
+ &#39;corr_O2_and_C4_exp&#39;,
+ &#39;corr_O2_and_P3_knee_freq&#39;,
+ &#39;corr_O2_and_P3_exp&#39;,
+ &#39;corr_O2_and_P4_knee_freq&#39;,
+ &#39;corr_O2_and_P4_exp&#39;,
+ &#39;corr_O2_and_O1_knee_freq&#39;,
+ &#39;corr_O2_and_O1_exp&#39;,
+ &#39;corr_F7_and_Fp1_knee_freq&#39;,
+ &#39;corr_F7_and_Fp1_exp&#39;,
+ &#39;corr_F7_and_Fp2_knee_freq&#39;,
+ &#39;corr_F7_and_Fp2_exp&#39;,
+ &#39;corr_F7_and_F3_knee_freq&#39;,
+ &#39;corr_F7_and_F3_exp&#39;,
+ &#39;corr_F7_and_F4_knee_freq&#39;,
+ &#39;corr_F7_and_F4_exp&#39;,
+ &#39;corr_F7_and_C3_knee_freq&#39;,
+ &#39;corr_F7_and_C3_exp&#39;,
+ &#39;corr_F7_and_C4_knee_freq&#39;,
+ &#39;corr_F7_and_C4_exp&#39;,
+ &#39;corr_F7_and_P3_knee_freq&#39;,
+ &#39;corr_F7_and_P3_exp&#39;,
+ &#39;corr_F7_and_P4_knee_freq&#39;,
+ &#39;corr_F7_and_P4_exp&#39;,
+ &#39;corr_F7_and_O1_knee_freq&#39;,
+ &#39;corr_F7_and_O1_exp&#39;,
+ &#39;corr_F7_and_O2_knee_freq&#39;,
+ &#39;corr_F7_and_O2_exp&#39;,
+ &#39;corr_F8_and_Fp1_knee_freq&#39;,
+ &#39;corr_F8_and_Fp1_exp&#39;,
+ &#39;corr_F8_and_Fp2_knee_freq&#39;,
+ &#39;corr_F8_and_Fp2_exp&#39;,
+ &#39;corr_F8_and_F3_knee_freq&#39;,
+ &#39;corr_F8_and_F3_exp&#39;,
+ &#39;corr_F8_and_F4_knee_freq&#39;,
+ &#39;corr_F8_and_F4_exp&#39;,
+ &#39;corr_F8_and_C3_knee_freq&#39;,
+ &#39;corr_F8_and_C3_exp&#39;,
+ &#39;corr_F8_and_C4_knee_freq&#39;,
+ &#39;corr_F8_and_C4_exp&#39;,
+ &#39;corr_F8_and_P3_knee_freq&#39;,
+ &#39;corr_F8_and_P3_exp&#39;,
+ &#39;corr_F8_and_P4_knee_freq&#39;,
+ &#39;corr_F8_and_P4_exp&#39;,
+ &#39;corr_F8_and_O1_knee_freq&#39;,
+ &#39;corr_F8_and_O1_exp&#39;,
+ &#39;corr_F8_and_O2_knee_freq&#39;,
+ &#39;corr_F8_and_O2_exp&#39;,
+ &#39;corr_F8_and_F7_knee_freq&#39;,
+ &#39;corr_F8_and_F7_exp&#39;,
+ &#39;corr_T3_and_Fp1_knee_freq&#39;,
+ &#39;corr_T3_and_Fp1_exp&#39;,
+ &#39;corr_T3_and_Fp2_knee_freq&#39;,
+ &#39;corr_T3_and_Fp2_exp&#39;,
+ &#39;corr_T3_and_F3_knee_freq&#39;,
+ &#39;corr_T3_and_F3_exp&#39;,
+ &#39;corr_T3_and_F4_knee_freq&#39;,
+ &#39;corr_T3_and_F4_exp&#39;,
+ &#39;corr_T3_and_C3_knee_freq&#39;,
+ &#39;corr_T3_and_C3_exp&#39;,
+ &#39;corr_T3_and_C4_knee_freq&#39;,
+ &#39;corr_T3_and_C4_exp&#39;,
+ &#39;corr_T3_and_P3_knee_freq&#39;,
+ &#39;corr_T3_and_P3_exp&#39;,
+ &#39;corr_T3_and_P4_knee_freq&#39;,
+ &#39;corr_T3_and_P4_exp&#39;,
+ &#39;corr_T3_and_O1_knee_freq&#39;,
+ &#39;corr_T3_and_O1_exp&#39;,
+ &#39;corr_T3_and_O2_knee_freq&#39;,
+ &#39;corr_T3_and_O2_exp&#39;,
+ &#39;corr_T3_and_F7_knee_freq&#39;,
+ &#39;corr_T3_and_F7_exp&#39;,
+ &#39;corr_T3_and_F8_knee_freq&#39;,
+ &#39;corr_T3_and_F8_exp&#39;,
+ &#39;corr_T4_and_Fp1_knee_freq&#39;,
+ &#39;corr_T4_and_Fp1_exp&#39;,
+ &#39;corr_T4_and_Fp2_knee_freq&#39;,
+ &#39;corr_T4_and_Fp2_exp&#39;,
+ &#39;corr_T4_and_F3_knee_freq&#39;,
+ &#39;corr_T4_and_F3_exp&#39;,
+ &#39;corr_T4_and_F4_knee_freq&#39;,
+ &#39;corr_T4_and_F4_exp&#39;,
+ &#39;corr_T4_and_C3_knee_freq&#39;,
+ &#39;corr_T4_and_C3_exp&#39;,
+ &#39;corr_T4_and_C4_knee_freq&#39;,
+ &#39;corr_T4_and_C4_exp&#39;,
+ &#39;corr_T4_and_P3_knee_freq&#39;,
+ &#39;corr_T4_and_P3_exp&#39;,
+ &#39;corr_T4_and_P4_knee_freq&#39;,
+ &#39;corr_T4_and_P4_exp&#39;,
+ &#39;corr_T4_and_O1_knee_freq&#39;,
+ &#39;corr_T4_and_O1_exp&#39;,
+ &#39;corr_T4_and_O2_knee_freq&#39;,
+ &#39;corr_T4_and_O2_exp&#39;,
+ &#39;corr_T4_and_F7_knee_freq&#39;,
+ &#39;corr_T4_and_F7_exp&#39;,
+ &#39;corr_T4_and_F8_knee_freq&#39;,
+ &#39;corr_T4_and_F8_exp&#39;,
+ &#39;corr_T4_and_T3_knee_freq&#39;,
+ &#39;corr_T4_and_T3_exp&#39;,
+ &#39;corr_T5_and_Fp1_knee_freq&#39;,
+ &#39;corr_T5_and_Fp1_exp&#39;,
+ &#39;corr_T5_and_Fp2_knee_freq&#39;,
+ &#39;corr_T5_and_Fp2_exp&#39;,
+ &#39;corr_T5_and_F3_knee_freq&#39;,
+ &#39;corr_T5_and_F3_exp&#39;,
+ &#39;corr_T5_and_F4_knee_freq&#39;,
+ &#39;corr_T5_and_F4_exp&#39;,
+ &#39;corr_T5_and_C3_knee_freq&#39;,
+ &#39;corr_T5_and_C3_exp&#39;,
+ &#39;corr_T5_and_C4_knee_freq&#39;,
+ &#39;corr_T5_and_C4_exp&#39;,
+ &#39;corr_T5_and_P3_knee_freq&#39;,
+ &#39;corr_T5_and_P3_exp&#39;,
+ &#39;corr_T5_and_P4_knee_freq&#39;,
+ &#39;corr_T5_and_P4_exp&#39;,
+ &#39;corr_T5_and_O1_knee_freq&#39;,
+ &#39;corr_T5_and_O1_exp&#39;,
+ &#39;corr_T5_and_O2_knee_freq&#39;,
+ &#39;corr_T5_and_O2_exp&#39;,
+ &#39;corr_T5_and_F7_knee_freq&#39;,
+ &#39;corr_T5_and_F7_exp&#39;,
+ &#39;corr_T5_and_F8_knee_freq&#39;,
+ &#39;corr_T5_and_F8_exp&#39;,
+ &#39;corr_T5_and_T3_knee_freq&#39;,
+ &#39;corr_T5_and_T3_exp&#39;,
+ &#39;corr_T5_and_T4_knee_freq&#39;,
+ &#39;corr_T5_and_T4_exp&#39;,
+ &#39;corr_T6_and_Fp1_knee_freq&#39;,
+ &#39;corr_T6_and_Fp1_exp&#39;,
+ &#39;corr_T6_and_Fp2_knee_freq&#39;,
+ &#39;corr_T6_and_Fp2_exp&#39;,
+ &#39;corr_T6_and_F3_knee_freq&#39;,
+ &#39;corr_T6_and_F3_exp&#39;,
+ &#39;corr_T6_and_F4_knee_freq&#39;,
+ &#39;corr_T6_and_F4_exp&#39;,
+ &#39;corr_T6_and_C3_knee_freq&#39;,
+ &#39;corr_T6_and_C3_exp&#39;,
+ &#39;corr_T6_and_C4_knee_freq&#39;,
+ &#39;corr_T6_and_C4_exp&#39;,
+ &#39;corr_T6_and_P3_knee_freq&#39;,
+ &#39;corr_T6_and_P3_exp&#39;,
+ &#39;corr_T6_and_P4_knee_freq&#39;,
+ &#39;corr_T6_and_P4_exp&#39;,
+ &#39;corr_T6_and_O1_knee_freq&#39;,
+ &#39;corr_T6_and_O1_exp&#39;,
+ &#39;corr_T6_and_O2_knee_freq&#39;,
+ &#39;corr_T6_and_O2_exp&#39;,
+ &#39;corr_T6_and_F7_knee_freq&#39;,
+ &#39;corr_T6_and_F7_exp&#39;,
+ &#39;corr_T6_and_F8_knee_freq&#39;,
+ &#39;corr_T6_and_F8_exp&#39;,
+ &#39;corr_T6_and_T3_knee_freq&#39;,
+ &#39;corr_T6_and_T3_exp&#39;,
+ &#39;corr_T6_and_T4_knee_freq&#39;,
+ &#39;corr_T6_and_T4_exp&#39;,
+ &#39;corr_T6_and_T5_knee_freq&#39;,
+ &#39;corr_T6_and_T5_exp&#39;,
+ &#39;corr_Fz_and_Fp1_knee_freq&#39;,
+ &#39;corr_Fz_and_Fp1_exp&#39;,
+ &#39;corr_Fz_and_Fp2_knee_freq&#39;,
+ &#39;corr_Fz_and_Fp2_exp&#39;,
+ &#39;corr_Fz_and_F3_knee_freq&#39;,
+ &#39;corr_Fz_and_F3_exp&#39;,
+ &#39;corr_Fz_and_F4_knee_freq&#39;,
+ &#39;corr_Fz_and_F4_exp&#39;,
+ &#39;corr_Fz_and_C3_knee_freq&#39;,
+ &#39;corr_Fz_and_C3_exp&#39;,
+ &#39;corr_Fz_and_C4_knee_freq&#39;,
+ &#39;corr_Fz_and_C4_exp&#39;,
+ &#39;corr_Fz_and_P3_knee_freq&#39;,
+ &#39;corr_Fz_and_P3_exp&#39;,
+ &#39;corr_Fz_and_P4_knee_freq&#39;,
+ &#39;corr_Fz_and_P4_exp&#39;,
+ &#39;corr_Fz_and_O1_knee_freq&#39;,
+ &#39;corr_Fz_and_O1_exp&#39;,
+ &#39;corr_Fz_and_O2_knee_freq&#39;,
+ &#39;corr_Fz_and_O2_exp&#39;,
+ &#39;corr_Fz_and_F7_knee_freq&#39;,
+ &#39;corr_Fz_and_F7_exp&#39;,
+ &#39;corr_Fz_and_F8_knee_freq&#39;,
+ &#39;corr_Fz_and_F8_exp&#39;,
+ &#39;corr_Fz_and_T3_knee_freq&#39;,
+ &#39;corr_Fz_and_T3_exp&#39;,
+ &#39;corr_Fz_and_T4_knee_freq&#39;,
+ &#39;corr_Fz_and_T4_exp&#39;,
+ &#39;corr_Fz_and_T5_knee_freq&#39;,
+ &#39;corr_Fz_and_T5_exp&#39;,
+ &#39;corr_Fz_and_T6_knee_freq&#39;,
+ &#39;corr_Fz_and_T6_exp&#39;,
+ &#39;corr_Cz_and_Fp1_knee_freq&#39;,
+ &#39;corr_Cz_and_Fp1_exp&#39;,
+ &#39;corr_Cz_and_Fp2_knee_freq&#39;,
+ &#39;corr_Cz_and_Fp2_exp&#39;,
+ &#39;corr_Cz_and_F3_knee_freq&#39;,
+ &#39;corr_Cz_and_F3_exp&#39;,
+ &#39;corr_Cz_and_F4_knee_freq&#39;,
+ &#39;corr_Cz_and_F4_exp&#39;,
+ &#39;corr_Cz_and_C3_knee_freq&#39;,
+ &#39;corr_Cz_and_C3_exp&#39;,
+ &#39;corr_Cz_and_C4_knee_freq&#39;,
+ &#39;corr_Cz_and_C4_exp&#39;,
+ &#39;corr_Cz_and_P3_knee_freq&#39;,
+ &#39;corr_Cz_and_P3_exp&#39;,
+ &#39;corr_Cz_and_P4_knee_freq&#39;,
+ &#39;corr_Cz_and_P4_exp&#39;,
+ &#39;corr_Cz_and_O1_knee_freq&#39;,
+ &#39;corr_Cz_and_O1_exp&#39;,
+ &#39;corr_Cz_and_O2_knee_freq&#39;,
+ &#39;corr_Cz_and_O2_exp&#39;,
+ &#39;corr_Cz_and_F7_knee_freq&#39;,
+ &#39;corr_Cz_and_F7_exp&#39;,
+ &#39;corr_Cz_and_F8_knee_freq&#39;,
+ &#39;corr_Cz_and_F8_exp&#39;,
+ &#39;corr_Cz_and_T3_knee_freq&#39;,
+ &#39;corr_Cz_and_T3_exp&#39;,
+ &#39;corr_Cz_and_T4_knee_freq&#39;,
+ &#39;corr_Cz_and_T4_exp&#39;,
+ &#39;corr_Cz_and_T5_knee_freq&#39;,
+ &#39;corr_Cz_and_T5_exp&#39;,
+ &#39;corr_Cz_and_T6_knee_freq&#39;,
+ &#39;corr_Cz_and_T6_exp&#39;,
+ &#39;corr_Cz_and_Fz_knee_freq&#39;,
+ &#39;corr_Cz_and_Fz_exp&#39;,
+ &#39;corr_Pz_and_Fp1_knee_freq&#39;,
+ &#39;corr_Pz_and_Fp1_exp&#39;,
+ &#39;corr_Pz_and_Fp2_knee_freq&#39;,
+ &#39;corr_Pz_and_Fp2_exp&#39;,
+ &#39;corr_Pz_and_F3_knee_freq&#39;,
+ &#39;corr_Pz_and_F3_exp&#39;,
+ &#39;corr_Pz_and_F4_knee_freq&#39;,
+ &#39;corr_Pz_and_F4_exp&#39;,
+ &#39;corr_Pz_and_C3_knee_freq&#39;,
+ &#39;corr_Pz_and_C3_exp&#39;,
+ &#39;corr_Pz_and_C4_knee_freq&#39;,
+ &#39;corr_Pz_and_C4_exp&#39;,
+ &#39;corr_Pz_and_P3_knee_freq&#39;,
+ &#39;corr_Pz_and_P3_exp&#39;,
+ &#39;corr_Pz_and_P4_knee_freq&#39;,
+ &#39;corr_Pz_and_P4_exp&#39;,
+ &#39;corr_Pz_and_O1_knee_freq&#39;,
+ &#39;corr_Pz_and_O1_exp&#39;,
+ &#39;corr_Pz_and_O2_knee_freq&#39;,
+ &#39;corr_Pz_and_O2_exp&#39;,
+ &#39;corr_Pz_and_F7_knee_freq&#39;,
+ &#39;corr_Pz_and_F7_exp&#39;,
+ &#39;corr_Pz_and_F8_knee_freq&#39;,
+ &#39;corr_Pz_and_F8_exp&#39;,
+ &#39;corr_Pz_and_T3_knee_freq&#39;,
+ &#39;corr_Pz_and_T3_exp&#39;,
+ &#39;corr_Pz_and_T4_knee_freq&#39;,
+ &#39;corr_Pz_and_T4_exp&#39;,
+ &#39;corr_Pz_and_T5_knee_freq&#39;,
+ &#39;corr_Pz_and_T5_exp&#39;,
+ &#39;corr_Pz_and_T6_knee_freq&#39;,
+ &#39;corr_Pz_and_T6_exp&#39;,
+ &#39;corr_Pz_and_Fz_knee_freq&#39;,
+ &#39;corr_Pz_and_Fz_exp&#39;,
+ &#39;corr_Pz_and_Cz_knee_freq&#39;,
+ &#39;corr_Pz_and_Cz_exp&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The ‘loss’ parameter of SGDClassifier must be a str among {‘huber’, ‘squared_hinge’, ‘log’ (deprecated), ‘modified_huber’, ‘epsilon_insensitive’, ‘squared_epsilon_insensitive’, ‘perceptron’, ‘hinge’, ‘squared_error’, ‘log_loss’}. Got ‘’ instead.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tpr</span><span class="p">,</span> <span class="n">fpr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x17fd9f850&gt;]
+</pre></div>
+</div>
+<img alt="../_images/526014f3d852a2414f19bc28403f06e8af0c6a8680ed543ff3e56b9bda7cf8dd.png" src="../_images/526014f3d852a2414f19bc28403f06e8af0c6a8680ed543ff3e56b9bda7cf8dd.png" />
+</div>
+</div>
+</section>
+<section id="riskslim">
+<h1>RiskSLIM<a class="headerlink" href="#riskslim" title="Permalink to this heading">#</a></h1>
+<p>RiskSLIM is a sparse linear integer model with risk scores. This model provides improved interpretablity compared to standard logistic regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># RiskSLIM settings</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;max_runtime&quot;</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span>
+    <span class="s2">&quot;max_tolerance&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span>
+    <span class="s2">&quot;loss_computation&quot;</span><span class="p">:</span> <span class="s2">&quot;fast&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;round_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;polish_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;chained_updates_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;add_cuts_at_heuristic_solutions&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;initialization_flag&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;init_max_runtime&quot;</span><span class="p">:</span> <span class="mf">120.0</span><span class="p">,</span>
+    <span class="s2">&quot;init_max_coefficient_gap&quot;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="s2">&quot;cplex_randomseed&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;cplex_mipemphasis&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Initialize model</span>
+<span class="n">rs</span> <span class="o">=</span> <span class="n">RiskSLIMClassifier</span><span class="p">(</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+    <span class="n">max_coef</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">max_abs_offset</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">variable_names</span><span class="o">=</span><span class="n">variable_names</span><span class="p">,</span>
+    <span class="n">outcome_name</span><span class="o">=</span><span class="s2">&quot;alzheimers&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">settings</span><span class="o">=</span><span class="n">settings</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit</span>
+<span class="n">rs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">rs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>+------------------------------------------------------+-------------------+-----------+
+| Pr(ALZHEIMERS = +1) = 1.0/(1.0 + exp(-(1 + score))   |                   |           |
+| ==================================================== | ================= | ========= |
+| linear_slope_O1                                      |          5 points |   + ..... |
+| alpha_knee_freq_C3                                   |          4 points |   + ..... |
+| gamma_knee_freq_F4                                   |         -1 points |   + ..... |
+| alpha_knee_freq_Cz                                   |         -2 points |   + ..... |
+| linear_slope_Pz                                      |         -5 points |   + ..... |
+| ==================================================== | ================= | ========= |
+| ADD POINTS FROM ROWS 1 to 5                          |             SCORE |   = ..... |
++------------------------------------------------------+-------------------+-----------+</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">RiskSLIMClassifier</label><div class="sk-toggleable__content"><pre>+------------------------------------------------------+-------------------+-----------+
+| Pr(ALZHEIMERS = +1) = 1.0/(1.0 + exp(-(1 + score))   |                   |           |
+| ==================================================== | ================= | ========= |
+| linear_slope_O1                                      |          5 points |   + ..... |
+| alpha_knee_freq_C3                                   |          4 points |   + ..... |
+| gamma_knee_freq_F4                                   |         -1 points |   + ..... |
+| alpha_knee_freq_Cz                                   |         -2 points |   + ..... |
+| linear_slope_Pz                                      |         -5 points |   + ..... |
+| ==================================================== | ================= | ========= |
+| ADD POINTS FROM ROWS 1 to 5                          |             SCORE |   = ..... |
++------------------------------------------------------+-------------------+-----------+</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rs</span><span class="o">.</span><span class="n">create_report</span><span class="p">(</span><span class="s2">&quot;report.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PosixPath(&#39;report.html&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+
+<span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;report.html&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="1200"
+            height="1000"
+            src="report.html"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">.3</span><span class="p">,</span> <span class="mf">.4</span><span class="p">,</span> <span class="mf">.5</span><span class="p">,</span> <span class="mf">.6</span><span class="p">,</span> <span class="mf">.7</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="mf">.9</span><span class="p">]:</span>
+    <span class="n">circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
+        <span class="p">(</span><span class="mf">.1</span><span class="p">,</span> <span class="n">i</span><span class="p">),</span> 
+        <span class="mf">.04</span><span class="p">,</span> <span class="c1"># Size</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+        <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+        <span class="n">fill</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+    
+    <span class="n">alpha</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">.9</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">alpha</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="mf">.1</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">.14</span><span class="p">,</span> <span class="mf">.76</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mf">.5</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="n">circle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
+    <span class="p">(</span><span class="mf">.8</span><span class="p">,</span> <span class="mf">.5</span><span class="p">),</span> 
+    <span class="mf">.04</span><span class="p">,</span> <span class="c1"># Size</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> 
+    <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+    <span class="n">fill</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">circle</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sparse.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/db7b8946ef4cb7127617fbdd312464dfcc40fa4f3e5084c31f58906382f19f5e.png" src="../_images/db7b8946ef4cb7127617fbdd312464dfcc40fa4f3e5084c31f58906382f19f5e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/ryanhammonds/projects/alzheimers_eeg/docs/notebook&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebook"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Alzheimer’s EEG: Modeling</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#riskslim">RiskSLIM</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryan Hammonds
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
