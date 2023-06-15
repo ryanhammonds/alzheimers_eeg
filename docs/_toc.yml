@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: 01_introduction.md
+chapters:
+- file: 02_data_collection.md
+- file: 03_data_analysis.md
+- file: 04_model_use.md
+- file: 05_justice.md
+- file: 06_revision.md
+- file: 07_technical.md
+  sections:
+    - file: notebook/01_features.ipynb
+    - file: notebook/02_model.ipynb
