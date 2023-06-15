@@ -163,6 +163,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="08_references.html">References</a></li>
 </ul>
 
     </div>
@@ -379,7 +380,7 @@ document.write(`
 <section id="interpretability">
 <h2>Interpretability<a class="headerlink" href="#interpretability" title="Permalink to this heading">#</a></h2>
 <p>As previously discussed, interpretability will be provided through the use of a risk calibrated, sparse logistic regression (RiskSLIM; Ustun &amp; Rudin, 2016). This method incorporates feature selection through sparsity, or promoting many of the linear weights to be zero through loss function penalties. The output of RiskSLIM is an interactive risk prediction table with a small number of features used to make the AD prediction (Fig. 4). This method provides improved interpretability compared to neural networks, or even standard logistic regression, as there would be greater number of non-zero weights and more nuanced interpretation of feature importance.</p>
-<p><img alt="" src="_images/04_model_use.png" /> <em>Figure 4. Model interpretability provided as a risk table for predicting AD disease. Each row is a single spectral feature’s contribution to the overall risk score and predicted risk.</em></p>
+<p><img alt="" src="_images/04_model_use.png" /> <em>Figure 4. Model interpretability provided as a risk table for predicting AD disease. Each row is a single spectral feature’s contribution to the overall risk score and predicted risk. These rows were selected using sparse optimization with 100s of parameters.</em></p>
 </section>
 </section>
 

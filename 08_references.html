@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Data Analysis &#8212; Alzheimer&#39;s EEG &amp; Ethics</title>
+    <title>References &#8212; Alzheimer&#39;s EEG &amp; Ethics</title>
   
   
   
@@ -61,11 +61,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '03_data_analysis';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '08_references';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Model Use" href="04_model_use.html" />
-    <link rel="prev" title="Data Collection" href="02_data_collection.html" />
+    <link rel="prev" title="Linear Modeling" href="notebook/02_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -152,7 +151,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="02_data_collection.html">Data Collection</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_data_analysis.html">Data Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_model_use.html">Model Use</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_justice.html">Justice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06_revision.html">Revision</a></li>
@@ -163,7 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="08_references.html">References</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">References</a></li>
 </ul>
 
     </div>
@@ -235,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ryanhammonds/alzheimers_eeg/issues/new?title=Issue%20on%20page%20%2F03_data_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryanhammonds/alzheimers_eeg/issues/new?title=Issue%20on%20page%20%2F08_references.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -265,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/03_data_analysis.md" target="_blank"
+      <li><a href="_sources/08_references.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,9 +333,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -347,21 +344,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Data Analysis</h1>
+    <h1>References</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-plan">Analysis Plan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretability">Interpretability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biases">Biases</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -371,24 +358,27 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="data-analysis">
-<h1>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this heading">#</a></h1>
-<section id="analysis-plan">
-<h2>Analysis Plan<a class="headerlink" href="#analysis-plan" title="Permalink to this heading">#</a></h2>
-<p>Following the collection of raw EEG data, interpretable features will be extracted from the preclinical phase. This process requires computing power spectral density from the raw time series and extracting spectral model parameters. Spectral features will then be used to train a sparse logistic regression classification to predict probability of progression to MCI or dementia. Ethical concerns related to model interpretability and biased performance are discussed. Additional details and a preliminary analysis are presented in the technical section.</p>
-<p><img alt="" src="_images/03_data_analysis.png" />
-<em>Figure 3. Data analysis involves extracting interpretable features from raw EEG and training an AD risk model.</em></p>
-</section>
-<section id="interpretability">
-<h2>Interpretability<a class="headerlink" href="#interpretability" title="Permalink to this heading">#</a></h2>
-<p>Models intended to be deployed in high risk settings, where there is the potential for significant harm from inaccurate prediction, benefit from interpretability. Interpretability refers to the ability to explain why a model made a decision or prediction. This is particularly important in healthcare (Ahmad et al., 2013) and the current context as doctors must have trust in a model’s predictions prior to starting treatments or regimes for protecting against AD. Black box models, such as deep neural networks, can provide high accuracy but low interpretability. These models do not have clear mappings from inputs to predicted outputs. In many cases, interpretable models may result in reduced performance. In these cases, post-hoc explainability methods of black box models have been proposed.</p>
-<p>Designing interpretable models requires a combination of feature selection aided from domain expertise and the use of simple linear models. These models will be first attempted prior to increasing model complexity or relying on post-hoc explainability methods. Specifically, a risk calibrated super sparse linear integer model (RiskSLIM; Ustun &amp; Rudin, 2016) will be used to achieve interpretability. These models are sparse and include feature selection in the optimization problem, constrain logistic regression coefficients to integer values, and provide risk or probability estimates.</p>
-</section>
-<section id="biases">
-<h2>Biases<a class="headerlink" href="#biases" title="Permalink to this heading">#</a></h2>
-<p>Biases may be present during training if a diverse sample is not collected initially or the model is not trained to balance accuracy across groups of interest. This is related to the idea of fairness, or equal distributions of harms and benefits. Examples of this bias include poor performance on specific sub-groups related to race or sex. This may later lead to harm of the affected sub-group when the model is deployed. One meta analysis found that 67% of publications in machine learning and health care literature contained racial bias (Huang et al., 2022).</p>
-<p>To prevent sub-group biases during data analysis, bias will first be examined following model training. This requires the identification of groups of interest, likely to be race, sex, and socioeconomic status, but additional groups may be added depending on the demographics of participants. Once these groups are determined, a penalty may be added to the loss function that scales with the max minus min performance metric between groups. If all groups have equal performance (e.g. area under the curve), the penalty would be zero. As performance difference between sub-groups increases, the loss would increase to promote fair optimization.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
+<p>Ahmad, M. A., Eckert, C., &amp; Teredesai, A. (2018). Interpretable Machine Learning in Healthcare. Proceedings of the 2018 ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics, 559–560. <a class="reference external" href="https://doi.org/10.1145/3233547.3233667">https://doi.org/10.1145/3233547.3233667</a></p>
+<p>Ahmadlou, M., Adeli, H., &amp; Adeli, A. (2011). Fractality and a Wavelet-chaos-Methodology for EEG-based Diagnosis of Alzheimer Disease. Alzheimer Disease &amp; Associated Disorders, 25(1), 85–92. <a class="reference external" href="https://doi.org/10.1097/WAD.0b013e3181ed1160">https://doi.org/10.1097/WAD.0b013e3181ed1160</a></p>
+<p>Bhat, S., Acharya, U. R., Dadmehr, N., &amp; Adeli, H. (2015). Clinical Neurophysiological and Automated EEG-Based Diagnosis of the Alzheimer’s Disease. European Neurology, 74(3–4), 202–210. <a class="reference external" href="https://doi.org/10.1159/000441447">https://doi.org/10.1159/000441447</a></p>
+<p>Chandra, M., Harbishettar, V., Sawhney, H., &amp; Amanullah, S. (2021). Ethical Issues in Dementia Research. Indian Journal of Psychological Medicine, 43(5_suppl), S25–S30. <a class="reference external" href="https://doi.org/10.1177/02537176211022224">https://doi.org/10.1177/02537176211022224</a></p>
+<p>Davis, D. S. (2017). Ethical issues in Alzheimer’s disease research involving human subjects. Journal of Medical Ethics, 43(12), 852–856. <a class="reference external" href="https://doi.org/10.1136/medethics-2016-103392">https://doi.org/10.1136/medethics-2016-103392</a></p>
+<p>Donoghue, T., Dominguez, J., &amp; Voytek, B. (2020). Electrophysiological Frequency Band Ratio Measures Conflate Periodic and Aperiodic Neural Activity. Eneuro, 7(6), ENEURO.0192-20.2020. <a class="reference external" href="https://doi.org/10.1523/ENEURO.0192-20.2020">https://doi.org/10.1523/ENEURO.0192-20.2020</a></p>
+<p>Gallego-Jutgla, E., Elgendi, M., Vialatte, F., Sole-Casals, J., Cichocki, A., Latchoumane, C., Jaesung Jeong, &amp; Dauwels, J. (2012). Diagnosis of Alzheimer’s disease from EEG by means of synchrony measures in optimized frequency bands. 2012 Annual International Conference of the IEEE Engineering in Medicine and Biology Society, 4266–4270. <a class="reference external" href="https://doi.org/10.1109/EMBC.2012.6346909">https://doi.org/10.1109/EMBC.2012.6346909</a></p>
+<p>Huang, J., Galal, G., Etemadi, M., &amp; Vaidyanathan, M. (2022). Evaluation and Mitigation of Racial Bias in Clinical Machine Learning Models: Scoping Review. JMIR Medical Informatics, 10(5), e36388. <a class="reference external" href="https://doi.org/10.2196/36388">https://doi.org/10.2196/36388</a></p>
+<p>Jafari, Z., Kolb, B. E., &amp; Mohajerani, M. H. (2020). Neural oscillations and brain stimulation in Alzheimer’s disease. Progress in Neurobiology, 194, 101878. <a class="reference external" href="https://doi.org/10.1016/j.pneurobio.2020.101878">https://doi.org/10.1016/j.pneurobio.2020.101878</a></p>
+<p>Johnson, K. A., Fox, N. C., Sperling, R. A., &amp; Klunk, W. E. (2012). Brain Imaging in Alzheimer Disease. Cold Spring Harbor Perspectives in Medicine, 2(4), a006213–a006213. <a class="reference external" href="https://doi.org/10.1101/cshperspect.a006213">https://doi.org/10.1101/cshperspect.a006213</a></p>
+<p>Kim, S. Y. H. (2011). The ethics of informed consent in Alzheimer disease research. Nature Reviews Neurology, 7(7), 410–414. <a class="reference external" href="https://doi.org/10.1038/nrneurol.2011.76">https://doi.org/10.1038/nrneurol.2011.76</a></p>
+<p>Lyketsos, C. G., Carrillo, M. C., Ryan, J. M., Khachaturian, A. S., Trzepacz, P., Amatniek, J., Cedarbaum, J., Brashear, R., &amp; Miller, D. S. (2011). Neuropsychiatric symptoms in Alzheimer’s disease. Alzheimer’s &amp; Dementia, 7(5), 532–539. <a class="reference external" href="https://doi.org/10.1016/j.jalz.2011.05.2410">https://doi.org/10.1016/j.jalz.2011.05.2410</a></p>
+<p>Miltiadous, A., Tzimourta, K. D., Afrantou, T., Ioannidis, P., Grigoriadis, N., Tsalikakis, D. G., Angelidis, P., Tsipouras, M. G., Glavas, E., Giannakeas, N., &amp; Tzallas, A. T. (2023). A Dataset of Scalp EEG Recordings of Alzheimer’s Disease, Frontotemporal Dementia and Healthy Subjects from Routine EEG. Data, 8(6), 95. <a class="reference external" href="https://doi.org/10.3390/data8060095">https://doi.org/10.3390/data8060095</a></p>
+<p>Scheltens, P., De Strooper, B., Kivipelto, M., Holstege, H., Chételat, G., Teunissen, C. E., Cummings, J., &amp; Van Der Flier, W. M. (2021). Alzheimer’s disease. The Lancet, 397(10284), 1577–1590. <a class="reference external" href="https://doi.org/10.1016/S0140-6736(20)32205-4">https://doi.org/10.1016/S0140-6736(20)32205-4</a></p>
+<p>Stomrud, E., Hansson, O., Minthon, L., Blennow, K., Rosén, I., &amp; Londos, E. (2010). Slowing of EEG correlates with CSF biomarkers and reduced cognitive speed in elderly with normal cognition over 4 years. Neurobiology of Aging, 31(2), 215–223. <a class="reference external" href="https://doi.org/10.1016/j.neurobiolaging.2008.03.025">https://doi.org/10.1016/j.neurobiolaging.2008.03.025</a></p>
+<p>Tran, T. T., Rolle, C. E., Gazzaley, A., &amp; Voytek, B. (2020). Linked Sources of Neural Noise Contribute to Age-related Cognitive Decline. Journal of Cognitive Neuroscience, 32(9), 1813–1822. <a class="reference external" href="https://doi.org/10.1162/jocn_a_01584">https://doi.org/10.1162/jocn_a_01584</a></p>
+<p>Ustun, B., &amp; Rudin, C. (2019). Learning Optimized Risk Scores (arXiv:1610.00168). arXiv. <a class="reference external" href="http://arxiv.org/abs/1610.00168">http://arxiv.org/abs/1610.00168</a></p>
+<p>Vyšata, O., Procházka, A., Mareš, J., Rusina, R., Pazdera, L., Vališ, M., &amp; Kukal, J. (2014). Change in the Characteristics of EEG Color Noise in Alzheimer’s Disease. Clinical EEG and Neuroscience, 45(3), 147–151. <a class="reference external" href="https://doi.org/10.1177/1550059413491558">https://doi.org/10.1177/1550059413491558</a></p>
+<p>Yang, A. C., Wang, S.-J., Lai, K.-L., Tsai, C.-F., Yang, C.-H., Hwang, J.-P., Lo, M.-T., Huang, N. E., Peng, C.-K., &amp; Fuh, J.-L. (2013). Cognitive and neuropsychiatric correlates of EEG dynamic complexity in patients with Alzheimer’s disease. Progress in Neuro-Psychopharmacology and Biological Psychiatry, 47, 52–61. <a class="reference external" href="https://doi.org/10.1016/j.pnpbp.2013.07.022">https://doi.org/10.1016/j.pnpbp.2013.07.022</a></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -423,22 +413,13 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="02_data_collection.html"
+       href="notebook/02_model.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Data Collection</p>
+        <p class="prev-next-title">Linear Modeling</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="04_model_use.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Model Use</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -449,22 +430,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis-plan">Analysis Plan</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretability">Interpretability</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biases">Biases</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

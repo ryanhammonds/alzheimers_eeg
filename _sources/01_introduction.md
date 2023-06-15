@@ -14,9 +14,9 @@ kernelspec:
 
 # Introduction
 
-## Symptomatology
+## Symptoms
 
-Alzheimer’s disease (AD) is a progressive cognitive and neuropsychiatric disorder characterized by cognitive decline and impairment. Memory loss, impaired decision making, depression, apathy, and agitation are the most frequently observed symptoms. Delusions, hallucinations and aggression also present as the disease progresses to later stages (Miller et al., 2011). Mild cognitive impairment (MCI) is a stage that typically precedes AD that integers with daily living to a lesser degree than AD. AD patients typically progress from healthy, to MCI, and lastly to dementia over the course of 15 to 25 years (Scheltens et al., 2021). Duration of stages of AD are estimated to be 10 years of preclinical symptoms, 4 years of the MCI, and 6 years of dementia.
+Alzheimer’s disease (AD) is a progressive cognitive and neuropsychiatric disorder characterized by cognitive decline and impairment. Memory loss, impaired decision making, depression, apathy, and agitation are the most frequently observed symptoms. Delusions, hallucinations and aggression also present as the disease progresses to later stages (Lyketsos et al., 2011). Mild cognitive impairment (MCI) is a stage that precedes AD that integers with daily living to a lesser degree than AD. AD patients progress from healthy, to MCI, and lastly to dementia over the course of 15 to 25 years (Scheltens et al., 2021). Duration of stages of AD are estimated to be 10 years of preclinical symptoms, 4 years of the MCI, and 6 years of dementia.
 
 ## Epidemiology
 
