@@ -13,3 +13,4 @@ chapters:
   sections:
     - file: notebook/01_features.ipynb
     - file: notebook/02_model.ipynb
+- file: 08_references.md
